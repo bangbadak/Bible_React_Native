@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import DisplayChapter from './DisplayChapter';
-import NumericInput from 'react-native-numeric-input';
+import {NavigationContainer} from '@react-navigation/native';
+import StackNavigation from './navigations/Stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import DisplayChapter from './DisplayChapterExample';
 
 import {
   Text,
@@ -14,25 +17,23 @@ import {
 } from 'react-native';
 
 const App = () => {
-  const [chapter, setChapter] = useState(1);
-  const [verses, setVerses] = useState([]);
+  // const [chapter, setChapter] = useState(1);
+  // const [verses, setVerses] = useState([]);
+
+  // return (
+  //   <SafeAreaView>
+  //     <View>
+  //       <Pressable />
+  //     </View>
+
+  //     <ScrollView style={headerStyle.text}>{verses}</ScrollView>
+  //   </SafeAreaView>
+  // );
 
   return (
-    <SafeAreaView>
-      <View>
-        <TextInput
-          style={headerStyle.input}
-          keyboardType="numeric"
-          placeholder="Input Num"
-          onChangeText={text => {
-            setChapter(parseInt(text));
-          }}
-        />
-        <Button title="Select" onPress={setVerses(DisplayChapter(chapter))} />
-      </View>
-
-      <ScrollView style={headerStyle.text}>{verses}</ScrollView>
-    </SafeAreaView>
+    <NavigationContainer>
+      <StackNavigation />
+    </NavigationContainer>
   );
 };
 
