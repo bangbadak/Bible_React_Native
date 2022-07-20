@@ -1,4 +1,3 @@
-import {string} from 'prop-types';
 import React, {useEffect, useState} from 'react';
 import {
   Button,
@@ -14,22 +13,28 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
+    width: 100,
+    height: 100,
+    backgroundColor: '#45E2F5',
   },
 });
 
 const SelectChapter = ({navigation}) => {
   const [buttons, setButtons] = useState([]);
   useEffect(() => {
-    for (let i = 1; i < 50; i++) {
+    setButtons([]);
+    for (let i = 1; i < 51; i++) {
       const stringTitle = i.toString();
-
-      setButtons(buttons => [...buttons, stringTitle]);
-      //   <Button
-      //     style={styles.button}
-      //     title={stringTitle}
-      //     key={i}
-      //     onPress={() => navigation.navigate('DisplayChapter', {index: i})}
-      //   />,
+      setButtons(buttons => [
+        ...buttons,
+        <Pressable
+          style={styles.button}
+          title={stringTitle}
+          key={i}
+          onPress={() => navigation.navigate('DisplayChapter', {index: i})}>
+          <Text style={{color: '#000000'}}>{i}</Text>
+        </Pressable>,
+      ]);
     }
     console.log(buttons);
   }, []);
@@ -39,38 +44,9 @@ const SelectChapter = ({navigation}) => {
       style={{
         flex: 1,
         backgroundColor: '#ffffff',
-        justifyContent: 'center',
       }}>
       <ScrollView style={{flex: 1}}>
-        <View
-          style={{
-            flexDirection: 'row',
-            flex: 1,
-            width: 40,
-          }}>
-          {buttons.map((item, index) => (
-            <Pressable
-              key={index}
-              title={item}
-              style={{
-                height: 130,
-                width: 130,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-              onPressOut={() => {
-                navigation.navigate('DisplayChapter', {index: item});
-              }}>
-              <Text style={{color: '#000000'}}>{item}</Text>
-            </Pressable>
-          ))}
-          {/* <Button
-          title="go to the screen"
-          onPress={() => {
-            navigation.navigate('DisplayChapter', {index: 1});
-          }}
-        /> */}
-        </View>
+        <View style={{alignItems: 'center'}}>{buttons}</View>
       </ScrollView>
     </SafeAreaView>
   );
