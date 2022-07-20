@@ -3,8 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import StackNavigation from './navigations/Stack';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import DisplayChapter from './DisplayChapterExample';
-
 import {
   Text,
   View,

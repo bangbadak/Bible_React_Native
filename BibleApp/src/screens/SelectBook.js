@@ -29,7 +29,10 @@ const SelectBook = ({navigation}) => {
             style={styles.button}
             key={i}
             onPress={() =>
-              navigation.navigate('SelectChapter', {bookName: json[i].name})
+              navigation.navigate('SelectChapter', {
+                bookName: json[i].name,
+                length: json[i].chapters,
+              })
             }>
             <Text style={{color: '#000000'}}>{json[i].name}</Text>
           </Pressable>,
@@ -48,7 +51,7 @@ const SelectBook = ({navigation}) => {
         backgroundColor: '#ffffff',
       }}>
       <ScrollView style={{flex: 1}}>
-        <View style={{alignItems: 'center'}}>{books}</View>
+        <View style={{marginLeft: 15}}>{books}</View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -56,10 +59,7 @@ const SelectBook = ({navigation}) => {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 100,
-    height: 100,
+    height: 30,
   },
 });
 export default SelectBook;

@@ -22,7 +22,7 @@ const SelectChapter = ({route, navigation}) => {
   const [buttons, setButtons] = useState([]);
   useEffect(() => {
     // setButtons([]);
-    for (let i = 1; i < 51; i++) {
+    for (let i = 1; i < route.params.length + 1; i++) {
       const stringTitle = i.toString();
       setButtons(buttons => [
         ...buttons,
@@ -34,6 +34,7 @@ const SelectChapter = ({route, navigation}) => {
             navigation.navigate('DisplayChapter', {
               index: i,
               bookName: route.params.bookName,
+              length: route.params.length,
             })
           }>
           <Text style={{color: '#000000'}}>{i}</Text>

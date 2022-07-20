@@ -16,12 +16,10 @@ const StackNavigation = () => {
         cardStyle: {backgroundColor: '#ffffff'},
         headerStyle: {
           height: 110,
-          backgroundColor: '#95a5a6',
+          backgroundColor: '#ffffff',
           borderBottomWidth: 5,
-          borderBottomColor: '#34495e',
         },
-        headerTitleStyle: {color: '#ffffff', fontSize: 24},
-        headerTitleAlign: 'center',
+        headerTitleStyle: {color: '#000000', fontSize: 24},
       }}>
       <Stack.Screen name="SelectBook" component={SelectBook} />
       <Stack.Screen
@@ -29,7 +27,7 @@ const StackNavigation = () => {
         component={SelectChapter}
         // options={{headershown: false}}
       />
-      <Stack.Screen name="DisplayChapter" component={DisplayChapter} />
+      <Stack.Screen name="Display Chapter" component={DisplayChapter} />
     </Stack.Navigator>
   );
 };
