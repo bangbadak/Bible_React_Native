@@ -5,6 +5,7 @@ import {Platform} from 'react-native';
 
 import DisplayChapter from '../screens/DisplayChapter';
 import SelectChapter from '../screens/SelectChapter';
+import SelectBook from '../screens/SelectBook';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const StackNavigation = () => {
         headerTitleStyle: {color: '#ffffff', fontSize: 24},
         headerTitleAlign: 'center',
       }}>
+      <Stack.Screen name="SelectBook" component={SelectBook} />
       <Stack.Screen
         name="SelectChapter"
         component={SelectChapter}

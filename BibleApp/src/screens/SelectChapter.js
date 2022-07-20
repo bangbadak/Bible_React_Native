@@ -15,14 +15,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 100,
     height: 100,
-    backgroundColor: '#45E2F5',
   },
 });
 
-const SelectChapter = ({navigation}) => {
+const SelectChapter = ({route, navigation}) => {
   const [buttons, setButtons] = useState([]);
   useEffect(() => {
-    setButtons([]);
+    // setButtons([]);
     for (let i = 1; i < 51; i++) {
       const stringTitle = i.toString();
       setButtons(buttons => [
@@ -31,7 +30,12 @@ const SelectChapter = ({navigation}) => {
           style={styles.button}
           title={stringTitle}
           key={i}
-          onPress={() => navigation.navigate('DisplayChapter', {index: i})}>
+          onPress={() =>
+            navigation.navigate('DisplayChapter', {
+              index: i,
+              bookName: route.params.bookName,
+            })
+          }>
           <Text style={{color: '#000000'}}>{i}</Text>
         </Pressable>,
       ]);

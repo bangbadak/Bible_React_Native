@@ -4,15 +4,17 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 
 const DisplayChapter = ({route}) => {
   const [output, setOutput] = useState([]);
-  const index = route.params.index;
+  const {index, bookName} = route.params;
   useEffect(() => {
     GetChapter();
   }, []);
 
   const GetChapter = async () => {
     try {
-      setOutput([]);
-      const response = await fetch('https://bible-api.com/gen+' + index);
+      //   setOutput([]);
+      const response = await fetch(
+        'https://bible-api.com/' + bookName + '+' + index,
+      );
       const json = await response.json();
       for (var i = 0; i < json.verses.length; i++) {
         setOutput(arr => [...arr, i + 1 + '. ' + json.verses[i].text]);
