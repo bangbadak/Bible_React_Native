@@ -60,6 +60,7 @@ const SelectBook = ({navigation}) => {
 const styles = StyleSheet.create({
   button: {
     height: 30,
+    marginTop: 10,
   },
 });
 export default SelectBook;

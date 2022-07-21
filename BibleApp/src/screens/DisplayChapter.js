@@ -14,13 +14,14 @@ const DisplayChapter = ({route}) => {
       const response = await fetch(
         'https://bible-api.com/' + bookName + '+' + index,
       );
+      console.log('bookName, index: ' + bookName + ',' + index);
       const json = await response.json();
-
-      for (var i = 0; i < length; i++) {
+      console.log('length: ' + json.verses.length);
+      for (var i = 0; i < json.verses.length; i++) {
+        console.log(json.verses[i].text);
         setOutput(arr => [...arr, i + 1 + '. ' + json.verses[i].text]);
       }
     } catch (e) {
-      ß;
       console.error(e);
     }
   };
@@ -41,8 +42,8 @@ const DisplayChapter = ({route}) => {
   //   }
   // };
   return (
-    <ScrollView>
-      <Text style={{color: '#000000'}}>{output}</Text>
+    <ScrollView style={{backgroundColor: '#ffffff'}}>
+      <Text style={{color: '#000000', fontSize: 20}}>{output}</Text>
     </ScrollView>
   );
 };

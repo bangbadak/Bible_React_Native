@@ -19,15 +19,28 @@ const StackNavigation = () => {
           backgroundColor: '#ffffff',
           borderBottomWidth: 5,
         },
-        headerTitleStyle: {color: '#000000', fontSize: 24},
+        headerTitleStyle: {color: '#000000', fontSize: 18},
       }}>
-      <Stack.Screen name="SelectBook" component={SelectBook} />
+      <Stack.Screen
+        name="SelectBook"
+        component={SelectBook}
+        options={{title: 'Select Book'}}
+      />
       <Stack.Screen
         name="SelectChapter"
         component={SelectChapter}
-        // options={{headershown: false}}
+        options={({route}) => ({
+          title: route.params.bookName,
+        })}
       />
-      <Stack.Screen name="Display Chapter" component={DisplayChapter} />
+      <Stack.Screen
+        name="DisplayChapter"
+        title=""
+        component={DisplayChapter}
+        options={({route}) => ({
+          title: route.params.bookName + ' : ' + route.params.index,
+        })}
+      />
     </Stack.Navigator>
   );
 };

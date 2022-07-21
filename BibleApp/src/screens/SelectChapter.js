@@ -13,8 +13,10 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 100,
-    height: 100,
+    height: 50,
+    // borderColor: '#000000',
+    // borderWidth: 0.3,
+    alignSelf: 'stretch',
   },
 });
 
