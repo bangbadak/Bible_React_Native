@@ -3,15 +3,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StackNavigation from './Stack';
 
 import Setting from '../tabs/Setting';
-import setting from '../../assets/images/setting.png';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+import {Image} from 'react-native';
 
 const Tab = createBottomTabNavigator();
-
-const TabIcon = ({name, size, color}) => {
-  return <Icon name={name} size={size} color={color} />;
-};
-
+Ionicons.loadFont();
 const TabNavigation = () => {
   return (
     <Tab.Navigator
@@ -27,8 +24,24 @@ const TabNavigation = () => {
         // inactiveTintColor: '#cfcfcf',
         headerShown: false,
       }}>
-      <Tab.Screen name="Bible" component={StackNavigation} />
-      <Tab.Screen name="Setting" component={Setting} />
+      <Tab.Screen
+        name="Bible"
+        component={StackNavigation}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Ionicons name={'book'} color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Setting"
+        component={Setting}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Ionicons name={'settings'} color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

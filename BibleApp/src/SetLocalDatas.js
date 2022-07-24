@@ -8,50 +8,55 @@ const SetLocalDatas = () => {
   const [isSaved, setIsSaved] = useState(false);
   const numberOfBibleBook = 66;
 
-  console.log('SetLocalDatas called');
+  useEffect(() => {
+    console.log('SetLocalDatas called');
 
-  // setIsSaved(isDataSaved());
-  console.log('isSaved: ' + isSaved);
-  GetBooks();
-  console.log('books[i].length: ' + books[0][0]);
-  for (let i = 0; i < numberOfBibleBook; i++) {
-    for (let j = 0; j < books[i].length; j++) {
-      storeData(books[i].name, j, getChapter(books[i].name, j));
-    }
-  }
-  for (let i = 0; i < numberOfBibleBook; i++) {
-    for (let j = 0; j < books[i].length; j++) {
-      setResult(result, [
-        ...result,
-        getData(books[i].name, j, getChapter(books[i].name, j)),
-      ]);
-    }
-  }
+    // setIsSaved(isDataSaved());
+    // console.log('isSaved: ' + isSaved);
+    GetBooks();
+    console.log('books: ' + JSON.stringify(books));
+    // console.log('books[i].length: ' + books[0].length);
 
-  const isDataSaved = async () => {
-    try {
-      const isSave = await AsyncStorage.getItem('@isSaved');
-      if (isSaved == false || isSave == null) {
-        await AsyncStorage.setItem('@isSaved', true);
+    for (let i = 0; i < numberOfBibleBook; i++) {
+      for (let j = 0; j < books[i].length; j++) {
+        storeData(books[i].name, j, getChapter(books[i].name, j));
       }
-      if (isSave == null) isSave = false;
-      return isSave;
-    } catch (e) {
-      console.error(e);
     }
-  };
+    for (let i = 0; i < numberOfBibleBook; i++) {
+      for (let j = 0; j < books[i].length; j++) {
+        setResult(result, [
+          ...result,
+          getData(books[i].name, j, getChapter(books[i].name, j)),
+        ]);
+      }
+    }
+  }, []);
+  // const isDataSaved = async () => {
+  //   try {
+  //     const isSave = await AsyncStorage.getItem('@isSaved');
+  //     if (isSaved == false || isSave == null) {
+  //       await AsyncStorage.setItem('@isSaved', true);
+  //     }
+  //     if (isSave == null) isSave = false;
+  //     return isSave;
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   const GetBooks = async () => {
-    console.log('GetBooks called');
     try {
+      console.log('GetBooks called');
       const response = await fetch('https://bolls.life/get-books/NIV/');
       const json = await response.json();
-      for (let i = 0; i < numberOfBibleBook; i++) {
+      for (var i = 0; i < numberOfBibleBook; i++) {
         setBooks(books => [
           ...books,
           {name: json[i].name, length: json[i].chapters},
         ]);
         console.log('books[i].name: ' + books[i].name);
+        console.log('json[i].name: ' + json[i].name);
+        console.log('json[i].chapter: ' + json[i].chapters);
         // setBooks(books => [
         //   ...books,
         //   <Pressable
@@ -67,6 +72,7 @@ const SetLocalDatas = () => {
         //   </Pressable>,
         // ]);
       }
+      console.log(JSON.stringify(books));
       return books;
     } catch (e) {
       console.error(e);
@@ -110,6 +116,7 @@ const SetLocalDatas = () => {
       console.error(e);
     }
   };
+
   return result;
 };
 

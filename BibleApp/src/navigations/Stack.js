@@ -24,7 +24,9 @@ const StackNavigation = () => {
       <Stack.Screen
         name="SelectBook"
         component={SelectBook}
-        options={{title: 'Select Book'}}
+        options={{
+          title: 'Select Book',
+        }}
       />
       <Stack.Screen
         name="SelectChapter"

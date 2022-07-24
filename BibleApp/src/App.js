@@ -6,10 +6,7 @@ import TabNavigation from './navigations/Tab';
 import SetLocalDatas from './SetLocalDatas';
 
 const App = () => {
-  // useEffect(() => {
-  //   console.log(SetLocalDatas());
-  // }, []);
-
+  // console.log(SetLocalDatas());
   return (
     <NavigationContainer>
       {/* <StackNavigation /> */}

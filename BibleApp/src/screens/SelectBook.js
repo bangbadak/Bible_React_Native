@@ -8,6 +8,7 @@ import {
   Text,
   ScrollView,
   Pressable,
+  Platform,
 } from 'react-native';
 import SelectChapter from './SelectChapter';
 
@@ -50,7 +51,10 @@ const SelectBook = ({navigation}) => {
         flex: 1,
         backgroundColor: '#ffffff',
       }}>
-      <ScrollView style={{flex: 1}}>
+      <ScrollView
+        style={{
+          flex: 1,
+        }}>
         <View style={{marginLeft: 15}}>{books}</View>
       </ScrollView>
     </SafeAreaView>
