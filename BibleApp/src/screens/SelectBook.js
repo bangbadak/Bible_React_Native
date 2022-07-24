@@ -1,4 +1,3 @@
-import {number} from 'prop-types';
 import React, {useEffect, useState} from 'react';
 import {
   Button,
@@ -10,40 +9,39 @@ import {
   Pressable,
   Platform,
 } from 'react-native';
-import SelectChapter from './SelectChapter';
+import getBooks from '../localStorage/get/getBooks';
+import getChaptersNumber from '../localStorage/get/getChaptersNumber';
+import setBooks from '../localStorage/set/setBooks';
+import setChaptersNumber from '../localStorage/set/setChaptersNumber';
 
-const SelectBook = ({navigation}) => {
-  const [books, setBooks] = useState([]);
+const SelectBook = ({navigation, route}) => {
+  const [book, setBook] = useState([]);
+  const [result, setResult] = useState([]);
+  const [numberOfChapters, setNumberOfChapters] = useState([]);
   const numberOfBibleBook = 66;
   useEffect(() => {
-    GetBooks();
-  }, []);
-
-  const GetBooks = async () => {
-    try {
-      const response = await fetch('https://bolls.life/get-books/NIV/');
-      const json = await response.json();
-      for (let i = 0; i < numberOfBibleBook; i++) {
-        setBooks(books => [
-          ...books,
-          <Pressable
-            style={styles.button}
-            key={i}
-            onPress={() =>
-              navigation.navigate('SelectChapter', {
-                bookName: json[i].name,
-                length: json[i].chapters,
-              })
-            }>
-            <Text style={{color: '#000000'}}>{json[i].name}</Text>
-          </Pressable>,
-        ]);
-      }
-      console.log('books: ' + books);
-    } catch (e) {
-      console.error(e);
+    setBooks();
+    setChaptersNumber();
+    setBook(route.params.booksName); //must be edited
+    setNumberOfChapters(getChaptersNumber());
+    for (let i = 0; i < numberOfBibleBook; i++) {
+      setResult(result => [
+        ...result,
+        <Pressable
+          style={styles.button}
+          title={book[i]}
+          key={i}
+          onPress={() =>
+            navigation.navigate('SelectChapter', {
+              bookName: book[i],
+              length: numberOfChapters[i],
+            })
+          }>
+          <Text style={{color: '#000000'}}>{book[i]}</Text>
+        </Pressable>,
+      ]);
     }
-  };
+  }, []);
 
   return (
     <SafeAreaView
@@ -55,7 +53,7 @@ const SelectBook = ({navigation}) => {
         style={{
           flex: 1,
         }}>
-        <View style={{marginLeft: 15}}>{books}</View>
+        <View style={{marginLeft: 15}}>{result}</View>
       </ScrollView>
     </SafeAreaView>
   );

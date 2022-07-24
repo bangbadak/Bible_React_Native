@@ -6,7 +6,9 @@ import {Platform} from 'react-native';
 import DisplayChapter from '../screens/DisplayChapter';
 import SelectChapter from '../screens/SelectChapter';
 import SelectBook from '../screens/SelectBook';
+import IsDownloaded from '../screens/IsDownloaded';
 
+import getBooks from '../localStorage/get/getBooks';
 const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
@@ -22,10 +24,21 @@ const StackNavigation = () => {
         headerTitleStyle: {color: '#000000', fontSize: 18},
       }}>
       <Stack.Screen
+        name="IsDownloaded"
+        component={IsDownloaded}
+        options={{
+          // headerShown: false,
+          title: 'IsDownloaded',
+        }}
+      />
+      <Stack.Screen
         name="SelectBook"
         component={SelectBook}
         options={{
           title: 'Select Book',
+        }}
+        initialParams={{
+          booksName: getBooks(),
         }}
       />
       <Stack.Screen

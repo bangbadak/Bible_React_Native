@@ -5,8 +5,6 @@ import StackNavigation from './Stack';
 import Setting from '../tabs/Setting';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {Image} from 'react-native';
-
 const Tab = createBottomTabNavigator();
 Ionicons.loadFont();
 const TabNavigation = () => {
