@@ -1,14 +1,26 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, SafeAreaView} from 'react-native';
 
 const Setting = () => {
-  /*
-    기능: 
-        1. 테마 설정
-        2. 글자 크기 설정
-        3. 버전 확인
-    */
-  return <View></View>;
+  const [data, setData] = useState('');
+  useEffect(() => {
+    GetMySQL();
+  });
+  const GetMySQL = async () => {
+    try {
+      const response = await fetch('http://localhost:4548/books');
+      const data = await response.json();
+      console.log('name: ' + data[0].title);
+      setData(data[0].title);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  return (
+    <SafeAreaView>
+      <Text>{data}</Text>
+    </SafeAreaView>
+  );
 };
 
 export default Setting;

@@ -10,10 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.7",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.3.2",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.19",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-native": "0.68.2",
