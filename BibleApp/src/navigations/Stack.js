@@ -23,14 +23,14 @@ const StackNavigation = () => {
         },
         headerTitleStyle: {color: '#000000', fontSize: 18},
       }}>
-      <Stack.Screen
+      {/* <Stack.Screen
         name="IsDownloaded"
         component={IsDownloaded}
         options={{
           // headerShown: false,
           title: 'IsDownloaded',
         }}
-      />
+      /> */}
       <Stack.Screen
         name="SelectBook"
         component={SelectBook}

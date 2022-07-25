@@ -14,30 +14,31 @@ import getChaptersNumber from '../localStorage/get/getChaptersNumber';
 import setBooks from '../localStorage/set/setBooks';
 import setChaptersNumber from '../localStorage/set/setChaptersNumber';
 
-const SelectBook = ({navigation, route}) => {
-  const [book, setBook] = useState([]);
+const SelectBook = ({navigation}) => {
   const [result, setResult] = useState([]);
-  const [numberOfChapters, setNumberOfChapters] = useState([]);
+  const [numberOfChapters, setNumberOfChapters] = useState([]); //이거 없애야됨
   const numberOfBibleBook = 66;
   useEffect(() => {
     setBooks();
     setChaptersNumber();
-    setBook(route.params.booksName); //must be edited
-    setNumberOfChapters(getChaptersNumber());
+    setNumberOfChapters(getChaptersNumber()); // 수정
+
     for (let i = 0; i < numberOfBibleBook; i++) {
+      const bookName = JSON.stringify(getBooks(i));
+      console.log('bookName: ' + bookName);
       setResult(result => [
         ...result,
         <Pressable
           style={styles.button}
-          title={book[i]}
+          title={bookName}
           key={i}
           onPress={() =>
             navigation.navigate('SelectChapter', {
-              bookName: book[i],
+              bookName: bookName,
               length: numberOfChapters[i],
             })
           }>
-          <Text style={{color: '#000000'}}>{book[i]}</Text>
+          <Text style={{color: '#000000'}}>{bookName}</Text>
         </Pressable>,
       ]);
     }
