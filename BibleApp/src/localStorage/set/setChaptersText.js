@@ -1,10 +1,9 @@
 import {useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import getBooks from './get/getBooks';
-import getChaptersNumber from './getChaptersNumber';
+import getBooks from '../get/getBooks';
+import getChaptersNumber from '../get/getChaptersNumber';
 
 const setChaptersText = async () => {
-  const [data, setData] = useState([]);
   const numberOfBibleBooks = 66;
   const bookName = getBooks();
   const numberOfChapters = getChaptersNumber();
@@ -19,19 +18,12 @@ const setChaptersText = async () => {
         );
         const json = await response.json();
 
-        for (let k = 0; k < json.verses.length; k++)
-          setData(data => [...data, k + 1 + '.' + json.verses[k].text]);
-
-        await AsyncStorage.setItem(
-          '@bible' + bookName[i] + j.toString(),
-          JSON.stringify(data),
-        );
-        console.log('data: ' + JSON.stringify(data));
-
-        // const res = await AsyncStorage.getItem(
-        //   '@bible' + bookName[i] + j.toString(),
-        // );
-        // console.log('res: ' + JSON.stringify(res));
+        for (let k = 0; k < json.verses.length; k++) {
+          await AsyncStorage.setItem(
+            '@bible' + bookName[i] + j + ':' + k,
+            JSON.stringify(json.verses[k].text),
+          );
+        }
       } catch (error) {
         console.log(error);
         throw error;

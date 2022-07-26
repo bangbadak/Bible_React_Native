@@ -1,17 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useState} from 'react';
 const setBooks = async () => {
   const numberOfBibleBooks = 66;
   try {
-    console.log('setBooks() called');
+    var res = [];
     const response = await fetch('https://bolls.life/get-books/NIV/');
     const json = await response.json();
-    for (let i = 0; i < numberOfBibleBooks; i++) {
-      await AsyncStorage.setItem('@bibleBook' + i, json[i].name);
-    }
+    for (let i = 0; i < numberOfBibleBooks; i++) res.push(json[i].name);
+
+    await AsyncStorage.setItem('@bibleBook', JSON.stringify(res));
   } catch (error) {
     console.log(error);
-    throw error;
   }
 };
 

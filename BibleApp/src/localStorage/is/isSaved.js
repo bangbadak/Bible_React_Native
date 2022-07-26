@@ -1,17 +1,23 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import setBooks from '../set/setBooks';
+import setChaptersNumber from '../set/setChaptersNumber';
+import setChaptersText from '../set/setChaptersText';
 const isSaved = async () => {
   try {
-    const isSaved = await AsyncStorage.getItem('@isSaved');
-    if (isSaved != null) {
-      console.log('isSaved true, start displaying bible.');
-      return true;
-    } else if (isSaved == null) {
-      return false;
-    }
+    // const isSave = await AsyncStorage.getItem('@isSaved');
+    // if (isSave != null || isSave == 'true') {
+    //   console.log('isSaved true, start displaying bible.');
+    //   return true;
+    // } else {
+    console.log('isSaved false, start download datas');
+    await AsyncStorage.setItem('@isSaved', 'true');
+    setBooks();
+    setChaptersNumber();
+    setChaptersText();
+    return false;
+    // }
   } catch (error) {
     console.log(error);
-    throw error;
   }
 };
 

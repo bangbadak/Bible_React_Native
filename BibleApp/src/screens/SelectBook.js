@@ -1,33 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Button,
   SafeAreaView,
   StyleSheet,
   View,
   Text,
   ScrollView,
   Pressable,
-  Platform,
 } from 'react-native';
-import getBooks from '../localStorage/get/getBooks';
-import getChaptersNumber from '../localStorage/get/getChaptersNumber';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import setBooks from '../localStorage/set/setBooks';
 import setChaptersNumber from '../localStorage/set/setChaptersNumber';
+import setChaptersText from '../localStorage/set/setChaptersText';
 
 const SelectBook = ({navigation}) => {
-  const [result, setResult] = useState([]);
-  const [numberOfChapters, setNumberOfChapters] = useState([]); //이거 없애야됨
+  // const [result, setResult] = useState([]);
+  const result = [];
+  const [bookName, setBookName] = useState('');
+  // const [temp, setTemp] = useState([]);
+  // const temp = [];
   const numberOfBibleBook = 66;
+
   useEffect(() => {
-    setBooks();
-    setChaptersNumber();
-    setNumberOfChapters(getChaptersNumber()); // 수정
+    console.log('SelectBook called');
+    // MakeArr();
 
     for (let i = 0; i < numberOfBibleBook; i++) {
-      const bookName = JSON.stringify(getBooks(i));
-      console.log('bookName: ' + bookName);
-      setResult(result => [
-        ...result,
+      let name = Promise.resolve(getJson(i));
+      name.then(value => {
+        setBookName(value);
+      });
+      // console.log('name type: ' + );
+      // abcd(i);
+
+      console.log('bookName[i]: ' + bookName);
+      result.push(
         <Pressable
           style={styles.button}
           title={bookName}
@@ -35,14 +42,52 @@ const SelectBook = ({navigation}) => {
           onPress={() =>
             navigation.navigate('SelectChapter', {
               bookName: bookName,
-              length: numberOfChapters[i],
+              // length: numberOfChapters,
             })
           }>
           <Text style={{color: '#000000'}}>{bookName}</Text>
         </Pressable>,
-      ]);
+      );
     }
   }, []);
+  const abcd = async index => {
+    let abc = getJson(index).then(value => {
+      // setBookName(value);
+      return value;
+    });
+  };
+  const getJson = async index => {
+    try {
+      const ret = [];
+      const response = await fetch('https://bolls.life/get-books/NIV/');
+      const json = await response.json();
+      console.log('bible name: ' + json[index].name);
+      return json[index].name;
+      // setTemp(temp => [...temp, json[i].name]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const storeBooks = async (index, value) => {
+    try {
+      console.log('index, value: ' + index + ',' + value);
+      await AsyncStorage.setItem('@bibleBook' + index, value);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getBooks = async index => {
+    try {
+      const res = await AsyncStorage.getItem('@bibleBook' + index);
+      if (res !== null) {
+        return res;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <SafeAreaView

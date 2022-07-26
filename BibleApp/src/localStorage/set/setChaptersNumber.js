@@ -8,9 +8,13 @@ const setChaptersNumber = async () => {
     const json = await response.json();
     for (let i = 0; i < numberOfBibleBooks; i++) {
       await AsyncStorage.setItem(
-        '@bibleChaptersNumber' + i.toString(),
+        '@bibleChaptersNumber' + i,
         JSON.stringify(json[i].chapters),
       );
+      // const res = await AsyncStorage.getItem(
+      //   '@bibleChaptersNumber' + i.toString(),
+      // );
+      // console.log('bibleChapterNumber[i]: ' + res);
     }
   } catch (error) {
     console.log('error: ' + error);

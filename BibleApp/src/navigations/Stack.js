@@ -22,13 +22,14 @@ const StackNavigation = () => {
           borderBottomWidth: 5,
         },
         headerTitleStyle: {color: '#000000', fontSize: 18},
-      }}>
+      }}
+      initialRouteName="SelectBook">
       {/* <Stack.Screen
         name="IsDownloaded"
         component={IsDownloaded}
         options={{
           // headerShown: false,
-          title: 'IsDownloaded',
+          title: 'Checking Bible Downloaded',
         }}
       /> */}
       <Stack.Screen
@@ -36,9 +37,6 @@ const StackNavigation = () => {
         component={SelectBook}
         options={{
           title: 'Select Book',
-        }}
-        initialParams={{
-          booksName: getBooks(),
         }}
       />
       <Stack.Screen
