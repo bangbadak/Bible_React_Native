@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React, {useEffect, useState, useRef} from 'react';
-import {Text, View, ScrollView, Button, StyleSheeet} from 'react-native';
-import getChaptersText from '../localStorage/get/getChaptersText';
-
-const DisplayChapter = async ({route}) => {
-=======
 import React, {useEffect, useState, useLayoutEffect} from 'react';
 import {
   Text,
@@ -28,15 +21,10 @@ const DisplayChapter = ({navigation, route}) => {
   const [icon, setIcon] = useState(false);
 
   const full = route.params.bookName + route.params.index;
->>>>>>> 8c62871
   useEffect(() => {
-    setOutput(getChaptersText(bookName, index));
+    GetChapter();
   }, []);
-  const [output, setOutput] = useState([]);
-  const {index, bookName} = route.params;
 
-<<<<<<< HEAD
-=======
   useLayoutEffect(() => {
     isStored(full);
     navigation.setOptions({
@@ -112,7 +100,6 @@ const DisplayChapter = ({navigation, route}) => {
     }
   };
 
->>>>>>> 8c62871
   return (
     <ScrollView style={{backgroundColor: '#ffffff'}}>
       <View style={{marginHorizontal: 20, backgroundColor: '#ffffff'}}>

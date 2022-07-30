@@ -21,10 +21,7 @@ target 'BibleApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-<<<<<<< HEAD
-=======
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
->>>>>>> 8c62871
 
   target 'BibleAppTests' do
     inherit! :complete
