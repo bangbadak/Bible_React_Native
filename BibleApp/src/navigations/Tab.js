@@ -2,15 +2,13 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StackNavigation from './Stack';
 
-import Setting from '../tabs/Setting';
-import setting from '../../assets/images/setting.png';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Favorites from '../tabs/Favorites';
+import FavoritesTab from './FavoriteTab';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+Ionicons.loadFont();
 
 const Tab = createBottomTabNavigator();
-
-const TabIcon = ({name, size, color}) => {
-  return <Icon name={name} size={size} color={color} />;
-};
 
 const TabNavigation = () => {
   return (
@@ -27,8 +25,28 @@ const TabNavigation = () => {
         // inactiveTintColor: '#cfcfcf',
         headerShown: false,
       }}>
-      <Tab.Screen name="Bible" component={StackNavigation} />
-      <Tab.Screen name="Setting" component={Setting} />
+      <Tab.Screen
+        name="Bible"
+        component={StackNavigation}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Ionicons name={'book'} color={color} size={size} />
+          ),
+          tabBarActiveTintColor: '#000000',
+          tabBarInactiveTintColor: '#bbbbbb',
+        }}
+      />
+      <Tab.Screen
+        name="FavoritesTab"
+        component={FavoritesTab}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Ionicons name={'bookmark'} color={color} size={size} />
+          ),
+          tabBarActiveTintColor: '#000000',
+          tabBarInactiveTintColor: '#bbbbbb',
+        }}
+      />
     </Tab.Navigator>
   );
 };

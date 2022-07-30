@@ -9,7 +9,8 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
-import SelectChapter from './SelectChapter';
+
+
 
 const SelectBook = ({navigation}) => {
   const [books, setBooks] = useState([]);
@@ -38,11 +39,11 @@ const SelectBook = ({navigation}) => {
           </Pressable>,
         ]);
       }
-      console.log('books: ' + books);
     } catch (e) {
       console.error(e);
     }
   };
+
 
   return (
     <SafeAreaView

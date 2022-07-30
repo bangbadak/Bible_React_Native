@@ -43,7 +43,6 @@ const SelectChapter = ({route, navigation}) => {
         </Pressable>,
       ]);
     }
-    console.log(buttons);
   }, []);
 
   return (

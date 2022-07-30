@@ -2,19 +2,18 @@ import React, {useEffect, useState, useLayoutEffect} from 'react';
 import {
   Text,
   View,
-  ScrollView,
   Button,
   StyleSheeet,
   Pressable,
+  ScrollView,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 Ionicons.loadFont();
 
-const DisplayChapter = ({navigation, route}) => {
+const DisplayFavorite = ({navigation, route}) => {
   const [output, setOutput] = useState([]);
   const {index, bookName} = route.params;
   const [isMark, setIsMark] = useState(false);
@@ -116,4 +115,4 @@ const DisplayChapter = ({navigation, route}) => {
   );
 };
 
-export default DisplayChapter;
+export default DisplayFavorite;
