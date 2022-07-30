@@ -2,11 +2,14 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import StackNavigation from './Stack';
 
-import Setting from '../tabs/Setting';
+import Favorites from '../tabs/Favorites';
+import FavoritesTab from './FavoriteTab';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Tab = createBottomTabNavigator();
 Ionicons.loadFont();
+
+const Tab = createBottomTabNavigator();
+
 const TabNavigation = () => {
   return (
     <Tab.Navigator
@@ -29,15 +32,19 @@ const TabNavigation = () => {
           tabBarIcon: ({size, color}) => (
             <Ionicons name={'book'} color={color} size={size} />
           ),
+          tabBarActiveTintColor: '#000000',
+          tabBarInactiveTintColor: '#bbbbbb',
         }}
       />
       <Tab.Screen
-        name="Setting"
-        component={Setting}
+        name="FavoritesTab"
+        component={FavoritesTab}
         options={{
           tabBarIcon: ({size, color}) => (
-            <Ionicons name={'settings'} color={color} size={size} />
+            <Ionicons name={'bookmark'} color={color} size={size} />
           ),
+          tabBarActiveTintColor: '#000000',
+          tabBarInactiveTintColor: '#bbbbbb',
         }}
       />
     </Tab.Navigator>

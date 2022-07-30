@@ -1,42 +1,29 @@
-<<<<<<< HEAD
-import React, {useEffect, useState, useRef} from 'react';
-import {Text, View, ScrollView, Button, StyleSheeet} from 'react-native';
-import getChaptersText from '../localStorage/get/getChaptersText';
-
-const DisplayChapter = async ({route}) => {
-=======
 import React, {useEffect, useState, useLayoutEffect} from 'react';
 import {
   Text,
   View,
-  ScrollView,
   Button,
   StyleSheeet,
   Pressable,
+  ScrollView,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 Ionicons.loadFont();
 
-const DisplayChapter = ({navigation, route}) => {
+const DisplayFavorite = ({navigation, route}) => {
   const [output, setOutput] = useState([]);
   const {index, bookName} = route.params;
   const [isMark, setIsMark] = useState(false);
   const [icon, setIcon] = useState(false);
 
   const full = route.params.bookName + route.params.index;
->>>>>>> 8c62871
   useEffect(() => {
-    setOutput(getChaptersText(bookName, index));
+    GetChapter();
   }, []);
-  const [output, setOutput] = useState([]);
-  const {index, bookName} = route.params;
 
-<<<<<<< HEAD
-=======
   useLayoutEffect(() => {
     isStored(full);
     navigation.setOptions({
@@ -112,7 +99,6 @@ const DisplayChapter = ({navigation, route}) => {
     }
   };
 
->>>>>>> 8c62871
   return (
     <ScrollView style={{backgroundColor: '#ffffff'}}>
       <View style={{marginHorizontal: 20, backgroundColor: '#ffffff'}}>
@@ -129,4 +115,4 @@ const DisplayChapter = ({navigation, route}) => {
   );
 };
 
-export default DisplayChapter;
+export default DisplayFavorite;

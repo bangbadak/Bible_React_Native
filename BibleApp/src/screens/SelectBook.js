@@ -7,11 +7,16 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
+<<<<<<< HEAD
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import setBooks from '../localStorage/set/setBooks';
 import setChaptersNumber from '../localStorage/set/setChaptersNumber';
 import setChaptersText from '../localStorage/set/setChaptersText';
+=======
+
+
+>>>>>>> 8c62871
 
 const SelectBook = ({navigation}) => {
   // const [result, setResult] = useState([]);
@@ -84,10 +89,16 @@ const SelectBook = ({navigation}) => {
       if (res !== null) {
         return res;
       }
+<<<<<<< HEAD
     } catch (error) {
       console.log(error);
+=======
+    } catch (e) {
+      console.error(e);
+>>>>>>> 8c62871
     }
   };
+
 
   return (
     <SafeAreaView

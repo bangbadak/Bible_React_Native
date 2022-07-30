@@ -5,6 +5,7 @@ platform :ios, '11.0'
 install! 'cocoapods', :deterministic_uuids => false
 # pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'  # <= this line, needed for vector-icons
 
+
 target 'BibleApp' do
   config = use_native_modules!
 
@@ -20,6 +21,10 @@ target 'BibleApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+<<<<<<< HEAD
+=======
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+>>>>>>> 8c62871
 
   target 'BibleAppTests' do
     inherit! :complete
